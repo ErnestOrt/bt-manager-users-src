@@ -4,7 +4,6 @@ public class Bike {
 
 	private String id;
 	private String name;
-	private byte[] image;
 	
 	
 	public String getId() {
@@ -18,11 +17,5 @@ public class Bike {
 	}
 	public void setName(String name) {
 		this.name = name;
-	}
-	public byte[] getImage() {
-		return image;
-	}
-	public void setImage(byte[] image) {
-		this.image = image;
 	}
 }

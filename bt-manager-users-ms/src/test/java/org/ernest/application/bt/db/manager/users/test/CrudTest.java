@@ -127,7 +127,7 @@ public class CrudTest {
 		
 		UpdateUnjoinStageInput updateUnjoinStageInput = new UpdateUnjoinStageInput();
 		updateUnjoinStageInput.setUserId(userIdCreated);
-		updateUnjoinStageInput.setStageId(UUID.randomUUID().toString());
+		updateUnjoinStageInput.setStageId(updateJoinStageInput.getStageId());
 		
 		new RestTemplate().postForObject("http://localhost:"+port+"/update/unjoinstage", updateUnjoinStageInput, String.class);
 		Assert.assertTrue(!new RestTemplate().getForObject("http://localhost:"+port+"/retrieve/"+userIdCreated, User.class).getStagesIdsJoined().contains(updateUnjoinStageInput.getStageId()));

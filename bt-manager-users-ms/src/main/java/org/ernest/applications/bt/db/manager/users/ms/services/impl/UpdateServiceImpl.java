@@ -4,6 +4,7 @@ import java.util.stream.Collectors;
 
 import org.ernest.applications.bt.db.manager.users.ct.UpdateAddBikeInput;
 import org.ernest.applications.bt.db.manager.users.ct.UpdateAddstageCompletedInput;
+import org.ernest.applications.bt.db.manager.users.ct.UpdateAvatarIconInput;
 import org.ernest.applications.bt.db.manager.users.ct.UpdateDescriptionInput;
 import org.ernest.applications.bt.db.manager.users.ct.UpdateJoinStageInput;
 import org.ernest.applications.bt.db.manager.users.ct.UpdateNameInput;
@@ -37,6 +38,13 @@ public class UpdateServiceImpl implements UpdateService {
 		
 		User user = srdService.retrieve(updateDescriptionInput.getUserId());
 		user.setDescription(updateDescriptionInput.getDescription());
+		srdService.update(user);
+	}
+	
+	@Override
+	public void updateAvatarIcon(UpdateAvatarIconInput updateAvatarIconInput) throws UpdateUserException, RetrieveUserException {
+		User user = srdService.retrieve(updateAvatarIconInput.getUserId());
+		user.setAvatarIcon(updateAvatarIconInput.getIconId());
 		srdService.update(user);
 	}
 	

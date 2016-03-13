@@ -4,6 +4,7 @@ import java.util.UUID;
 
 import org.ernest.applications.bt.db.manager.users.ct.UpdateAddBikeInput;
 import org.ernest.applications.bt.db.manager.users.ct.UpdateAddstageCompletedInput;
+import org.ernest.applications.bt.db.manager.users.ct.UpdateAvatarIconInput;
 import org.ernest.applications.bt.db.manager.users.ct.UpdateDescriptionInput;
 import org.ernest.applications.bt.db.manager.users.ct.UpdateJoinStageInput;
 import org.ernest.applications.bt.db.manager.users.ct.UpdateNameInput;
@@ -66,6 +67,16 @@ public class CrudTest {
 		
 		new RestTemplate().postForObject("http://localhost:"+port+"/update/description", updateDescriptionInput, String.class);
 		Assert.assertEquals(updateDescriptionInput.getDescription(), new RestTemplate().getForObject("http://localhost:"+port+"/retrieve/"+userIdCreated, User.class).getDescription());
+	}
+	
+	@Test
+	public void updateAvatar(){
+		UpdateAvatarIconInput updateAvatarIconInput = new UpdateAvatarIconInput();
+		updateAvatarIconInput.setUserId(userIdCreated);
+		updateAvatarIconInput.setIconId(0);
+		
+		new RestTemplate().postForObject("http://localhost:"+port+"/update/icon", updateAvatarIconInput, String.class);
+		Assert.assertEquals(updateAvatarIconInput.getIconId(), new RestTemplate().getForObject("http://localhost:"+port+"/retrieve/"+userIdCreated, User.class).getAvatarIcon());
 	}
 	
 	@Test

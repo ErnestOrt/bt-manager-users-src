@@ -2,6 +2,7 @@ package org.ernest.applications.bt.db.manager.users.ms.controllers;
 
 import org.ernest.applications.bt.db.manager.users.ct.UpdateAddBikeInput;
 import org.ernest.applications.bt.db.manager.users.ct.UpdateAddstageCompletedInput;
+import org.ernest.applications.bt.db.manager.users.ct.UpdateAvatarIconInput;
 import org.ernest.applications.bt.db.manager.users.ct.UpdateDescriptionInput;
 import org.ernest.applications.bt.db.manager.users.ct.UpdateJoinStageInput;
 import org.ernest.applications.bt.db.manager.users.ct.UpdateNameInput;
@@ -30,6 +31,11 @@ public class UpdateController {
 	@RequestMapping("/update/description")
 	public void updateName(@RequestBody UpdateDescriptionInput updateDescriptionInput) throws UpdateUserException, RetrieveUserException {
 		updateService.updateDescription(updateDescriptionInput);
+	}
+	
+	@RequestMapping("/update/icon")
+	public void updateAvatarIcon(@RequestBody UpdateAvatarIconInput updateAvatarIconInput) throws UpdateUserException, RetrieveUserException {
+		updateService.updateAvatarIcon(updateAvatarIconInput);
 	}
 	
 	@RequestMapping("/update/statistics")

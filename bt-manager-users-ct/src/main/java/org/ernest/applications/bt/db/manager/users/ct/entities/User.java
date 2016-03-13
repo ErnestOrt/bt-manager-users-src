@@ -13,6 +13,7 @@ public class User {
 	private String name;
 	private String description;
 	private Statistics statistics;
+	private int avatarIcon;
 	private List<Bike> bikesList;
 	private Set<String> stagesIdsCompleted;
 	private Set<String> stagesIdsJoined;
@@ -45,6 +46,14 @@ public class User {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public int getAvatarIcon() {
+		return avatarIcon;
+	}
+
+	public void setAvatarIcon(int avatarIcon) {
+		this.avatarIcon = avatarIcon;
 	}
 
 	public String getDescription() {

@@ -2,6 +2,7 @@ package org.ernest.applications.bt.db.manager.users.ms.services;
 
 import org.ernest.applications.bt.db.manager.users.ct.UpdateAddBikeInput;
 import org.ernest.applications.bt.db.manager.users.ct.UpdateAddstageCompletedInput;
+import org.ernest.applications.bt.db.manager.users.ct.UpdateAvatarIconInput;
 import org.ernest.applications.bt.db.manager.users.ct.UpdateDescriptionInput;
 import org.ernest.applications.bt.db.manager.users.ct.UpdateJoinStageInput;
 import org.ernest.applications.bt.db.manager.users.ct.UpdateNameInput;
@@ -28,5 +29,7 @@ public interface UpdateService {
 	void unjoinStage(UpdateUnjoinStageInput updateUnjoinStageInput) throws UpdateUserException, RetrieveUserException;
 
 	void updateStatistics(UpdateStatisticsInput updateStatisticsInput) throws UpdateUserException, RetrieveUserException;
+
+	void updateAvatarIcon(UpdateAvatarIconInput updateAvatarIconInput) throws UpdateUserException, RetrieveUserException;
 
 }

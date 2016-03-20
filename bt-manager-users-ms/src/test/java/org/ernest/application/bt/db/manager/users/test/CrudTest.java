@@ -34,11 +34,11 @@ public class CrudTest {
 	@Value("${local.server.port}")
 	String port;
 	
-	String userIdCreated;
+	String userIdCreated = UUID.randomUUID().toString();
 	
 	@Before
 	public void setUp(){
-		userIdCreated = new RestTemplate().getForObject("http://localhost:"+port+"/create", String.class);
+		new RestTemplate().getForObject("http://localhost:"+port+"/create/"+userIdCreated, String.class);
 		Assert.assertEquals(userIdCreated, new RestTemplate().getForObject("http://localhost:"+port+"/retrieve/"+userIdCreated, User.class).get_id());
 	}
 	
@@ -142,5 +142,15 @@ public class CrudTest {
 		
 		new RestTemplate().postForObject("http://localhost:"+port+"/update/unjoinstage", updateUnjoinStageInput, String.class);
 		Assert.assertTrue(!new RestTemplate().getForObject("http://localhost:"+port+"/retrieve/"+userIdCreated, User.class).getStagesIdsJoined().contains(updateUnjoinStageInput.getStageId()));
+	}
+	
+	@Test
+	public void updateTeamJoined(){
+		String teamId = UUID.randomUUID().toString();
+		new RestTemplate().getForObject("http://localhost:"+port+"/update/jointeam/"+ userIdCreated +"/"+ teamId, String.class);
+		Assert.assertTrue(new RestTemplate().getForObject("http://localhost:"+port+"/retrieve/"+userIdCreated, User.class).getTeamsJoined().contains(teamId));
+		
+		new RestTemplate().getForObject("http://localhost:"+port+"/update/unjointeam/"+ userIdCreated +"/"+ teamId, String.class);
+		Assert.assertTrue(!new RestTemplate().getForObject("http://localhost:"+port+"/retrieve/"+userIdCreated, User.class).getTeamsJoined().contains(teamId));
 	}
 }

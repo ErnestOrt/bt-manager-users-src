@@ -15,6 +15,7 @@ public class User {
 	private Statistics statistics;
 	private int avatarIcon;
 	private List<Bike> bikesList;
+	private Set<String> teamsJoined;
 	private Set<String> stagesIdsCompleted;
 	private Set<String> stagesIdsJoined;
 	
@@ -22,6 +23,7 @@ public class User {
 		bikesList = new ArrayList<Bike>();
 		stagesIdsCompleted = new HashSet<String>();
 		stagesIdsJoined = new HashSet<String>();
+		teamsJoined = new HashSet<String>();
 	}
 	
 	public String get_id() {
@@ -94,6 +96,14 @@ public class User {
 
 	public void setStagesIdsJoined(Set<String> stagesIdsJoined) {
 		this.stagesIdsJoined = stagesIdsJoined;
+	}
+
+	public Set<String> getTeamsJoined() {
+		return teamsJoined;
+	}
+
+	public void setTeamsJoined(Set<String> teamsJoined) {
+		this.teamsJoined = teamsJoined;
 	}	
 	
 }

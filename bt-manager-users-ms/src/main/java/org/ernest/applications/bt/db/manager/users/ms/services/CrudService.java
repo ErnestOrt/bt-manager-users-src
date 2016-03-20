@@ -8,7 +8,7 @@ import org.ernest.applications.bt.db.manager.users.ct.exceptions.UpdateUserExcep
 
 public interface CrudService {
 
-	String create() throws CreateUserException;
+	void create(String userId) throws CreateUserException;
 	void update(User user) throws UpdateUserException;
 	User retrieve(String userId) throws RetrieveUserException;
 	void delete(String userId) throws DeleteUserException;

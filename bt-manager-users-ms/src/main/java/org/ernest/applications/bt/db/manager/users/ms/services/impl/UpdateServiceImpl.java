@@ -97,4 +97,20 @@ public class UpdateServiceImpl implements UpdateService {
 		user.getStagesIdsJoined().remove(updateUnjoinStageInput.getStageId());
 		srdService.update(user);
 	}
+
+	@Override
+	public void joinTeam(String userId, String teamId) throws UpdateUserException, RetrieveUserException {
+		
+		User user = srdService.retrieve(userId);
+		user.getTeamsJoined().add(teamId);
+		srdService.update(user);
+	}
+
+	@Override
+	public void unjoinTeam(String userId, String teamId) throws UpdateUserException, RetrieveUserException {
+		
+		User user = srdService.retrieve(userId);
+		user.getTeamsJoined().remove(teamId);
+		srdService.update(user);
+	}
 }

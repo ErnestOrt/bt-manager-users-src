@@ -9,12 +9,15 @@ import org.ernest.applications.bt.db.manager.users.ct.UpdateNameInput;
 import org.ernest.applications.bt.db.manager.users.ct.UpdateRemoveBikeInput;
 import org.ernest.applications.bt.db.manager.users.ct.UpdateStatisticsInput;
 import org.ernest.applications.bt.db.manager.users.ct.UpdateUnjoinStageInput;
+import org.ernest.applications.bt.db.manager.users.ct.exceptions.CreateUserException;
 import org.ernest.applications.bt.db.manager.users.ct.exceptions.RetrieveUserException;
 import org.ernest.applications.bt.db.manager.users.ct.exceptions.UpdateUserException;
 import org.ernest.applications.bt.db.manager.users.ms.services.UpdateService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -68,5 +71,13 @@ public class UpdateController {
 		updateService.unjoinStage(updateUnjoinStageInput);
 	}
 	
+	@RequestMapping(path = "/update/jointeam/{userId}/{teamId}", method = RequestMethod.GET)
+	public void joinTeam(@PathVariable("userId") String userId, @PathVariable("teamId") String teamId) throws UpdateUserException, RetrieveUserException {
+		updateService.joinTeam(userId, teamId);
+	}
 	
+	@RequestMapping(path = "/update/unjointeam/{userId}/{teamId}", method = RequestMethod.GET)
+	public void unjoinTeam(@PathVariable("userId") String userId, @PathVariable("teamId") String teamId) throws UpdateUserException, RetrieveUserException {
+		updateService.unjoinTeam(userId, teamId);
+	}
 }

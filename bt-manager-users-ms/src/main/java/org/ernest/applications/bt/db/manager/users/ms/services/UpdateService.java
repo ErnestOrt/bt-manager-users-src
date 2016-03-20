@@ -32,4 +32,8 @@ public interface UpdateService {
 
 	void updateAvatarIcon(UpdateAvatarIconInput updateAvatarIconInput) throws UpdateUserException, RetrieveUserException;
 
+	void joinTeam(String userId, String teamId) throws UpdateUserException, RetrieveUserException;
+
+	void unjoinTeam(String userId, String teamId) throws UpdateUserException, RetrieveUserException;
+
 }

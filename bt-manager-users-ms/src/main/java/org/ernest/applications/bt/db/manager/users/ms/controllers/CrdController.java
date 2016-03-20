@@ -17,9 +17,9 @@ public class CrdController {
 	@Autowired
 	CrudService crudService;
 	
-	@RequestMapping(path = "/create", method = RequestMethod.GET)
-	public String create() throws CreateUserException {
-		return crudService.create();
+	@RequestMapping(path = "/create/{userId}", method = RequestMethod.GET)
+	public void create(@PathVariable("userId") String userId) throws CreateUserException {
+		crudService.create(userId);
 	}
 	
 	@RequestMapping(path = "/retrieve/{userId}", method = RequestMethod.GET)

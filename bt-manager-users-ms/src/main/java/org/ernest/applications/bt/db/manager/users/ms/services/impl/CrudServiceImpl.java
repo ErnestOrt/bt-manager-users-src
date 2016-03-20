@@ -1,7 +1,5 @@
 package org.ernest.applications.bt.db.manager.users.ms.services.impl;
 
-import java.util.UUID;
-
 import org.ernest.applications.bt.db.manager.users.ct.entities.User;
 import org.ernest.applications.bt.db.manager.users.ct.exceptions.CreateUserException;
 import org.ernest.applications.bt.db.manager.users.ct.exceptions.DeleteUserException;
@@ -23,16 +21,14 @@ public class CrudServiceImpl implements CrudService{
 	private String dbHost;
 
 	@Override
-	public String create() throws CreateUserException {
+	public void create(String userId) throws CreateUserException {
 		
 		User user = new User();
-		user.set_id(UUID.randomUUID().toString());
+		user.set_id(userId);
 		try{
 			CouchDbClient dbClient = new CouchDbClient(buildCouchDbProperties());
 			dbClient.save(user);
 			dbClient.shutdown();
-		
-			return user.get_id();
 			
 		}catch(Exception e){
 			e.printStackTrace();

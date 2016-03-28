@@ -11,6 +11,7 @@ public class User {
 	private String _rev;
 	
 	private String name;
+	private String email;
 	private String description;
 	private Statistics statistics;
 	private int avatarIcon;
@@ -48,6 +49,14 @@ public class User {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+	
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 	public int getAvatarIcon() {

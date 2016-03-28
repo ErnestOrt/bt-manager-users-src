@@ -1,5 +1,6 @@
 package org.ernest.applications.bt.db.manager.users.ms.services.impl;
 
+import org.ernest.applications.bt.db.manager.users.ct.CreateUserInput;
 import org.ernest.applications.bt.db.manager.users.ct.entities.User;
 import org.ernest.applications.bt.db.manager.users.ct.exceptions.CreateUserException;
 import org.ernest.applications.bt.db.manager.users.ct.exceptions.DeleteUserException;
@@ -21,10 +22,10 @@ public class CrudServiceImpl implements CrudService{
 	private String dbHost;
 
 	@Override
-	public void create(String userId) throws CreateUserException {
-		
+	public void create(CreateUserInput createUserInput) throws CreateUserException {
 		User user = new User();
-		user.set_id(userId);
+		user.set_id(createUserInput.getToken());
+		user.setEmail(createUserInput.getEmail());
 		try{
 			CouchDbClient dbClient = new CouchDbClient(buildCouchDbProperties());
 			dbClient.save(user);
@@ -87,5 +88,4 @@ public class CrudServiceImpl implements CrudService{
 		properties.setProtocol("http");
 		return properties;
 	}
-
 }

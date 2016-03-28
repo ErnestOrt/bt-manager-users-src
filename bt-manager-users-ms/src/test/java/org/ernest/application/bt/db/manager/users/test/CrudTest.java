@@ -2,6 +2,7 @@ package org.ernest.application.bt.db.manager.users.test;
 
 import java.util.UUID;
 
+import org.ernest.applications.bt.db.manager.users.ct.CreateUserInput;
 import org.ernest.applications.bt.db.manager.users.ct.UpdateAddBikeInput;
 import org.ernest.applications.bt.db.manager.users.ct.UpdateAddstageCompletedInput;
 import org.ernest.applications.bt.db.manager.users.ct.UpdateAvatarIconInput;
@@ -38,7 +39,10 @@ public class CrudTest {
 	
 	@Before
 	public void setUp(){
-		new RestTemplate().getForObject("http://localhost:"+port+"/create/"+userIdCreated, String.class);
+		CreateUserInput input = new CreateUserInput();
+		input.setToken(userIdCreated);
+		input.setEmail("email@gmail.com");
+		new RestTemplate().postForObject("http://localhost:"+port+"/create", input, String.class);
 		Assert.assertEquals(userIdCreated, new RestTemplate().getForObject("http://localhost:"+port+"/retrieve/"+userIdCreated, User.class).get_id());
 	}
 	
